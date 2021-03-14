@@ -30,7 +30,7 @@ Afin de pouvoir faire tourner cette application, il faut au préalable installer
 Cloner ce repo : 
 
 ```shell
-git clone https://github.com/KevinBrb/pangolin.git
+git clone https://github.com/KevinBrb/justifapp.git
 ```
 
 A la racine du dossier : 
