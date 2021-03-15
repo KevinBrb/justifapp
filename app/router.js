@@ -5,6 +5,9 @@ const verify = require('./middlewares/verify');
 
 const router = Router();
 
+router.post('/', (req, res) => {
+    res.json({ message : 'Bienvenue sur JustifApp !'});
+});
 router.post('/token', userController.createToken);
 router.post('/justify', verify, textController.justify);
 
