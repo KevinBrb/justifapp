@@ -25,7 +25,7 @@ Afin de pouvoir faire tourner cette application, il faut au préalable installer
 
 :warning: **Il faudra aussi prévoir un fichier ".env" avec vos informations de connexion à votre base de donnée mongo, un fichier exemple est disponible dans ce dossier.**
 
-## Côté back
+## Côté back (Installation en local)
 
 Cloner ce repo : 
 
@@ -76,9 +76,13 @@ Afin d'utiliser au mieux cette application, il vous faudra effectuer les étapes
 
 ![Justification du texte](docsImg/error.png)
 
+L'application est déployée sur l'ip 35.181.53.188:5555 et peut-être utilisée avec Postman ou Insomnia.
+
+Documentation disponible [ici](http://35.181.53.188:5555/api-docs "Documentation API") ou http://localhost:5555/api-docs si vous êtes en local.
+
 ## Quelques tests
 
-J'ai mis en place quelques tests unitaires pour la forme ! Pour les lancer, exécuter cette commande :
+J'ai mis en place quelques tests unitaires pour la forme (disponible dans le dossier tests à la racine) ! Pour les lancer, exécuter cette commande :
 
 ```shell
 npm run test
