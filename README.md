@@ -68,7 +68,7 @@ Afin d'utiliser au mieux cette application, il vous faudra effectuer les étapes
 
 ![Récupération du token](docsImg/token.png)
 
-* Justifier un texte (Content-Type text/plain) si vous envoyez votre requête avec un token valide dans le header
+* Justifier un texte (Content-Type text/plain) si vous envoyez votre requête avec un token valide dans le header => '/api/justify'
 
 ![Justification du texte](docsImg/justify.png)
 
