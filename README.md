@@ -51,26 +51,6 @@ Pour démarrer le server :
 npm start
 ```
 
-## Côté front
-
-Se déplacer dans le dossier Angular :
-
-```shell
-cd .\pangolin-app\
-```
-
-Installation des paquets liés à Angular :
-
-```shell
-npm install
-```
-
-Démarrer l'application :
-
-```shell
-ng serve --open
-```
-
 ## Import d'un jeu de données
 
 Si vous souhaitez importer des données de tests : 
@@ -80,6 +60,21 @@ node ./data/import.js
 ```
 
 :warning: **Attention à bien modifier le .env ainsi que la ligne 3 du fichier app/models/User.js pour le nom de la collection**
+
+## Utilisation
+
+Afin d'utiliser au mieux cette application, il vous faudra effectuer les étapes suivantes : 
+* Envoyer un formulaire contenant un champ email avec la valeur d'un email utilisateur déjà présent en base de données. Cela vous permettra de récupérer le token dans le header (authorization) de la réponse du endoint '/api/token' (voir image)
+
+![Récupération du token](docsImg/token.png)
+
+* Justifier un texte (Content-Type text/plain) si vous envoyez votre requête avec un token valide dans le header
+
+![Justification du texte](docsImg/justify.png)
+
+* Renvoyer une erreur si le rate limit de mot est dépassé
+
+![Justification du texte](docsImg/error.png)
 
 ## Quelques tests
 
