@@ -20,13 +20,20 @@ let options = {
             title: 'JustifApp',
             version: '1.0.0',
         },
-        host: `http://35.181.53.188:${process.env.PORT}`,
+        host: `35.181.53.188:${process.env.PORT}`,
         basePath: '/api',
         produces: [
             "application/json"
         ],
         schemes: ['http'],
-        securityDefinitions: {}
+        securityDefinitions: {
+            JWT: {
+                type: 'apiKey',
+                in: 'header',
+                name: 'authorization',
+                description: "",
+            }
+        }
     },
     basedir: __dirname, //app absolute path
     files: ['./router.js'] //Path to the API handle folder
