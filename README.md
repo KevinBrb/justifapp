@@ -74,7 +74,7 @@ Afin d'utiliser au mieux cette application, il vous faudra effectuer les étapes
 
 * Renvoyer une erreur si le rate limit de mot est dépassé
 
-![Justification du texte](docsImg/error.png)
+![Message d'erreur](docsImg/error.png)
 
 L'application est déployée sur l'ip 35.181.53.188:5555 et peut-être utilisée avec Postman ou Insomnia.
 
