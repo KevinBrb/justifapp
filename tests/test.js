@@ -7,35 +7,63 @@ chai.use(chaiHttp);
 const server = require('../app/server');
 const verify = require('../app/middlewares/verify');
 
+// Test validateur Joi
+const validateBody = require('../app/services/validator');
+const schema = require ('../app/schemas/user');
+
 const wrongToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZvb0BiYXIuY29tIiiaWF0IjoxNjE1NzM3ODk4LCJleHAiOjE2MTU4MjQyOTh9.nY91lHkLV3zbQ1hOpbQfQfjWwLtcUOZV_hbEP6x81aM';
-const rightToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZvb0BiYXIuY29tIiwiaWF0IjoxNjE1NzM3ODk4LCJleHAiOjE2MTU4MjQyOTh9.nY91lHkLV3zbQ1hOpbQfQfjWwLtcUOZV_hbEP6x81aM';
+
+// Put your created token here
+const rightToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNAYi5mciIsImlhdCI6MTYxNTg5OTE1OSwiZXhwIjoxNjE1OTg1NTU5fQ.qJ6INXo3SoGSq6iQr5l_2JCaNYLeqlaOAQOYkjE3rWE';
 
 describe('Tictactrip App Tests', function() {
-    describe('Token creation', function() {
-        it('should return status 403 and error message if no email', function(done) {
+    describe('Validator Service', function() {    
+        describe('validateBody()', function() {
+            it('should return a middleware', function() {
+                expect(validateBody(schema)).to.be.a('function');
+            });
+    
+            it('should invalidate incorrect data in the body', function(done) {
+                chai.request(server)
+                .post('/api/token')
+                .type('json')
+                .send({
+                    email: 'k@b.c'
+                })
+                .end((err, res) => {
+                    expect(res).to.have.status(400);
+                    expect(res.body).to.be.a('string');
+                    done();
+                });
+            });
+        });
+    });
+
+    describe('Token and account creation', function() {
+        it('should return status 400 and error message if no email', function(done) {
             chai.request(server)
             .post('/api/token')
             .type('json')
             .end((err,res) => {
-                expect(res).to.have.status(403);
-                expect(res.body.message).to.be.a('string');
+                expect(res).to.have.status(400);
+                expect(res.error.text).to.be.a('string');
                 done();
             });
         });
 
-        it('should return status 401 and error message if user not found', function(done) {
+        it('should return status 200 and and new user in response', function(done) {
             chai.request(server)
             .post('/api/token')
             .type('json')
             .send({ email: 'best@best.com'})
             .end((err,res) => {
-                expect(res).to.have.status(401);
-                expect(res.body.message).to.be.a('string');
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.an('object');
                 done();
             });
         });
 
-        it('should return status 200 and success message if all is ok', function(done) {
+        it('should return status 200 and success message can log in', function(done) {
             chai.request(server)
             .post('/api/token')
             .type('json')
