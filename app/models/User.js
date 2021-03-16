@@ -46,6 +46,11 @@ class User {
 
         return userUpdateResult.modifiedCount;
     }
+
+    async create() {
+        const result = await (await collection).insertOne(this);
+        return result.ops[0];
+    }
 }
 
 module.exports = User;
